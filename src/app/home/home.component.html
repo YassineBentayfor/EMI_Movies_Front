@@ -12,5 +12,14 @@
       <app-home-film [film]="film"></app-home-film>
     </div>
   </div>
+  <div class="pagination-container">
+    <button class="pagination-button" (click)="loadPreviousPage()" [disabled]="currentPage === 1">
+      Previous Page
+    </button>
+    <span class="pagination-span">{{ currentPage }}</span>
+    <button class="pagination-button" (click)="loadNextPage()">
+      Next Page
+    </button>
+  </div>
 </div>
 

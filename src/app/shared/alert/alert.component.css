@@ -1,3 +1,4 @@
+/* alert.component.css */
 .backdrop {
   position: fixed;
   top: 0;
@@ -9,16 +10,48 @@
 }
 
 .alert-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
-  top: 30vh;
-  left: 20vw;
-  width: 60vw;
-  padding: 16px;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 100;
-  background: white;
-  box-shadow: 0 2px 8px rbga(0, 0, 0, 0.26);
+}
+
+.netflix-style {
+  background-color: #000;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  color: #fff;
+  max-width: 800px; /* Adjust the maximum width as needed */
+  width: 80%;
+}
+
+.netflix-style p {
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 .alert-box-actions {
-  text-align: right;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #e50914;
+  color: #fff;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #b2070d;
 }
