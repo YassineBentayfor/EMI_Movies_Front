@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit{
   ngOnInit(): void {
     this.getAllDatils()
   }
-  getAllDatils() { // get all popular movie with all detail aller retour get
+  getAllDatilss() { // get all popular movie with all detail aller retour get
     this.filmservice.getPopularMovies().subscribe((data) => {
       this.films = data.results;
       this.filmsfiltred = data.results;
@@ -62,27 +62,38 @@ export class HomeComponent implements OnInit{
     });
   }
 
+  currentPage: number=1;
+  getAllDatils() { // get all popular movie with all detail aller retour get
+    this.filmservice.getPopularMovies().subscribe((data) => {
+      this.films = data[this.currentPage-1].results;
+      this.filmsfiltred = data[this.currentPage-1].results;
+      this.all_ids = this.films.map(film => film.id);
 
-  // /*getAllDetails() {
-  //   this.filmservice.getAllMovies().subscribe((data: any[]) => {
-  //     const allMovies = data.flat(); // Flatten the array of movies
-  //
-  //     this.films = allMovies;
-  //     this.filmsfiltred = allMovies;
-  //     this.all_ids = allMovies.map(film => film.id);
-  //
-  //     // Now that all_ids is defined, you can make the specific API call
-  //     if (this.all_ids.length > 0) {
-  //       const requests = this.all_ids.map(id => this.filmservice.getPopularMoviesById(id));
-  //
-  //       forkJoin(requests).subscribe((results) => {
-  //         results.forEach((result, index) => {
-  //           this.id_gender.push({ "idfilm": this.all_ids[index], "genre": result.genres });
-  //         });
-  //       });
-  //     }
-  //   });
-  // }*/
+      // Now that all_ids is defined, you can make the specific API call
+      if (this.all_ids.length > 0) {
+        const requests = this.all_ids.map(id => this.filmservice.getPopularMoviesById(id));
+
+        forkJoin(requests).subscribe((results) => {
+          results.forEach((result, index) => {
+            this.id_gender.push({ "idfilm": this.all_ids[index], "genres": result.genres });
+          });
+        });
+      }
+    });
+  }
+
+  //scroll pages
+  loadNextPage(): void {
+    this.currentPage++;
+    this.getAllDatils();
+  }
+
+  loadPreviousPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.getAllDatils();
+    }
+  }
 
 
 

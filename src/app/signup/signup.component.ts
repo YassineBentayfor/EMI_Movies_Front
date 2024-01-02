@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms'; // Import FormBuilder and other necessary modules
 import { UsersloginService } from '../Service/users.login.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
 import { AlertComponent } from '../shared/alert/alert.component';
@@ -9,7 +9,7 @@ import { AlertComponent } from '../shared/alert/alert.component';
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf, AlertComponent],
+  imports: [ReactiveFormsModule, NgIf, AlertComponent, RouterLink],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css',
 })
@@ -37,7 +37,7 @@ export class SignupComponent {
     this.error = null;
   }
   private submitForm() {
- 
+
     const formGroup = this.signUpForm;
 
     if (formGroup.invalid) {
@@ -54,7 +54,7 @@ export class SignupComponent {
       },
       error: (err) => {
         this.error = err;
-        
+
         console.log(err);
       },
     });
